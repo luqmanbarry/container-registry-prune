@@ -26,7 +26,7 @@ echo "Tag Count: $TAG_COUNT"
 # Set default value is TAG_KEEP_COUNT is empty
 if [ -z "$TAG_KEEP_COUNT" ];
 then
-   TAG_KEEP_COUNT=2
+   TAG_KEEP_COUNT=3
 fi 
 
 if [ $TAG_COUNT -gt $TAG_KEEP_COUNT ];
