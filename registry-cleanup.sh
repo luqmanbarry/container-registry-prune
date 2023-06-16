@@ -29,7 +29,7 @@ then
    TAG_KEEP_COUNT=2
 fi 
 
-if [ $TAG_COUNT >= $TAG_KEEP_COUNT ];
+if [ $TAG_COUNT -gt $TAG_KEEP_COUNT ];
 then
     rm -rf $TEMP_TAGS || true
     
