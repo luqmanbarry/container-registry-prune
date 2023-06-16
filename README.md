@@ -6,6 +6,12 @@ Some container registries have this capability builtin. For example, images from
 
 > Search for this feature in the docs of said product before trying this solution. In a Kubernetes environment, you could place this script in a `CronJob` so that it runs periodically.
 
+## Pre-requisites
+
+- Container registry
+- Container registry user account with write access
+- jq, skopeo
+
 ## Invocation Example
 
 ```bash
