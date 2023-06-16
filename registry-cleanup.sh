@@ -29,14 +29,14 @@ then
    TAG_KEEP_COUNT=2
 fi 
 
-if [ $TAG_COUNT -gt $TAG_KEEP_COUNT ];
+if [ $TAG_COUNT >= $TAG_KEEP_COUNT ];
 then
     rm -rf $TEMP_TAGS || true
     
     for TAG_NAME in $(echo "$IMAGE_TAGS")
     do
         TAG_DATE=$(skopeo inspect \
-            "docker://${config.quayRegistry}/${imageName}" \
+            "docker://${IMAGE_REGISTRY_URL}:${TAG_NAME}" \
             --tls-verify=false \
             --username "${REGISTTRY_USERNAME}" \
             --password "${REGISTRY_PASSWORD}" \
@@ -52,7 +52,7 @@ then
     echo "Skipped Tags: $(echo $TEMP_TAGS | sort -rn -k1 | head -n $TAG_KEEP_COUNT)"
     DELETE_CANDIDATES=$(echo $TEMP_TAGS | sort -rn -k1 | tail -n +$TAG_KEEP_COUNT)
 
-    for DEL_TAG_NAME in $(echo "$IMAGE_TAGS") 
+    for DEL_TAG_NAME in $(echo "$DELETE_CANDIDATES") 
     do
         echo "Deleting Image with tag: $DEL_TAG_NAME"
         skopeo delete \
