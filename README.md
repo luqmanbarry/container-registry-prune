@@ -16,7 +16,7 @@ Some container registries have this capability builtin. For example, images from
 
 ```bash
 # Note: Tag is not specified
-IMAGE_REGISTRY_URL="registry-host.example.com/app-org/ose-tools-rhel8"
+IMAGE_REGISTRY_URL="registry-host.example.com/app-org/app-image"
 REGISTRY_USERNAME="my-username"
 REGISTRY_PASSWORD="my-password"
 TAG_KEEP_COUNT=10
