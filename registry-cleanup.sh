@@ -10,6 +10,20 @@ REGISTTRY_USERNAME=$2
 REGISTRY_PASSWORD=$3
 TAG_KEEP_COUNT=$4
 
+# Validate Inputs are provided
+if [ -z $IMAGE_REGISTRY_URL ] || [ -z $REGISTTRY_USERNAME ] || [ -z $REGISTRY_PASSWORD ];
+then
+    echo "Command Error: IMAGE_REGISTRY_URL, REGISTTRY_USERNAME, REGISTRY_PASSWORD are Reauired..."
+    echo "Example: sh registry-cleanup.sh registry.redhat.io/app-org/app-image my-username my-password"
+    echo ""
+    exit 1
+elif [ "$IMAGE_REGISTRY_URL" = "-h" ];
+then
+    echo "Sample Call: sh registry-cleanup.sh registry.redhat.io/app-org/app-image my-username my-password"
+    echo ""
+    exit 0
+fi
+
 
 TEMP_TAGS="/tmp/image-tags.txt"
 IMAGE_TAGS=$(skopeo list-tags \
