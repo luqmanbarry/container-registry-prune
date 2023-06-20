@@ -49,10 +49,11 @@ then
 
     done
 
-    echo "Skipped Tags: $(echo $TEMP_TAGS | sort -rn -k1 | head -n $TAG_KEEP_COUNT)"
-    DELETE_CANDIDATES=$(echo $TEMP_TAGS | sort -rn -k1 | tail -n +$TAG_KEEP_COUNT)
-
-    for DEL_TAG_NAME in $(echo "$DELETE_CANDIDATES") 
+    echo "Skipped Tags: $(cat $TEMP_TAGS | sort -rn -k1 | head -n $TAG_KEEP_COUNT)"
+    DELETE_COUNT=$((TAG_KEEP_COUNT+1))
+    DELETE_CANDIDATES=$(cat $TEMP_TAGS | sort -rn -k1 | tail -n +$DELETE_COUNT | awk '{print $2}')
+    
+    for DEL_TAG_NAME in $(echo "$IMAGE_TAGS") 
     do
         echo "Deleting Image with tag: $DEL_TAG_NAME"
         skopeo delete \
